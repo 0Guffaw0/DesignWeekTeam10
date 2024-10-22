@@ -162,6 +162,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1017965910f470d4db53d80df83fc67b, type: 2}
+  - {fileID: 2100000, guid: d0e67f0cc9a4dbf438dc48e856b42fc0, type: 2}
+  - {fileID: 2100000, guid: b48d134d2f405f54f95630a4d0127e04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -219,7 +221,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.2
+  isActive: 1
   bgRenderer: {fileID: 319868512}
+  backgroundSpriteRenderer: {fileID: 0}
+  backgroundSprites: []
 --- !u!1 &1816527444
 GameObject:
   m_ObjectHideFlags: 0
