@@ -10,9 +10,9 @@ public class Scores : MonoBehaviour
     [SerializeField]
     public TMP_Text[] scores = new TMP_Text[5];
 
-    public void DisplayHighScore(int position, string name, int time)
+    void DisplayHighScore(int position, string name, float time)
     {
-        scores[position].text = name + " " + string.Format("{0:000000}", time);
+        scores[position].text = name;
     }
 
     public void OnBackButton()
@@ -24,15 +24,28 @@ public class Scores : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string name;
-        int time;
-        /*
-        for (int i = 0; i < scores.Length; i++)
+        ReadFromFile();
+    }
+    void WriteToFile()
+    {
+        string path = "Assets/textfiles/scores.txt";
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine("Test");
+        writer.Close();
+    }
+
+    void ReadFromFile()
+    {
+        string path = "Assets/textfiles/scores.txt";
+        StreamReader reader = new StreamReader(path);
+
+        for (int i = 0; i < 5; i++)
         {
-            DisplayHighScore(i, name, time);
+            string scoreLine = reader.ReadLine();
+            DisplayHighScore(i, scoreLine, 10f);
         }
-        */
-        DisplayHighScore(0, "test", );
+
+        reader.Close();
     }
 
     // Update is called once per frame
