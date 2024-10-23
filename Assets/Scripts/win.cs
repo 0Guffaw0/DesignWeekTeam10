@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,5 +21,13 @@ public class win : MonoBehaviour
     public void OnWinButton()
     {
         SceneManager.LoadScene(2);
+    }
+
+    void WriteToFile()
+    {
+        string path = "Assets/textfiles/scores.txt";
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine("Test");
+        writer.Close();
     }
 }
