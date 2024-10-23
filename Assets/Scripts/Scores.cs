@@ -12,7 +12,7 @@ public class Scores : MonoBehaviour
 
     void DisplayHighScore(int position, string name, float time)
     {
-        scores[position].text = name;
+        scores[position].text = name + " " + time;
     }
 
     public void OnBackButton()
@@ -42,6 +42,7 @@ public class Scores : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             string scoreLine = reader.ReadLine();
+
             DisplayHighScore(i, scoreLine, 10f);
         }
 
