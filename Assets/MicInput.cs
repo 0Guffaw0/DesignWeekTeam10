@@ -54,6 +54,12 @@ public class MicInput : MonoBehaviour
         audioSource.Play();
     }
 
+    IEnumerator LoadGameOverScene()
+    {
+        yield return new WaitForSeconds(0.5f); // Optional: small delay before loading GameOver scene
+        SceneManager.LoadScene("GameOver");
+    }
+
     void Update()
     {
         if (audioSource.loop)
@@ -87,17 +93,18 @@ public class MicInput : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Collision detected with: " + other.gameObject.name); // Debug to ensure collision is detected
+
         if (other.gameObject.CompareTag("Ghost"))
         {
-            
             playerLives--;
             Debug.Log("Player hit a ghost! Lives remaining: " + playerLives);
 
-            
+            // If the player has no lives left, trigger game over
             if (playerLives <= 0)
             {
-                Debug.Log("Game Over");
-                SceneManager.LoadScene("GameOver");
+                Debug.Log("Game Over Triggered!");
+                StartCoroutine(LoadGameOverScene());
             }
         }
     }
