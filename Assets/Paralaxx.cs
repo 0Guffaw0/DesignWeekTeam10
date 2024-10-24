@@ -10,8 +10,8 @@ public class Paralaxx : MonoBehaviour
 
     void Start()
     {
-        startpos = tranform.position.x;
-        length = GetComponent<SpriteRender>().bounds.size.x;
+        startpos = transform.position.x;
+        length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
     void FixedUpdate()
@@ -21,7 +21,7 @@ public class Paralaxx : MonoBehaviour
 
         transform.position = new Vector3(startpos + dist, transform.position.y, transform.position.z);
 
-        if (temp > stratpos + length) startpos += length;
+        if (temp > startpos + length) startpos += length;
         else if (temp < startpos - length) startpos -= length;
     }
 }
