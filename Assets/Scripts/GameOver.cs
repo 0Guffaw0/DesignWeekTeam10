@@ -20,15 +20,12 @@ public class GameOver : MonoBehaviour
 
     public void OnPlayAgainButton()
     {
-        WriteToFile();
+        //WriteToFile();
         SceneManager.LoadScene(1);
     }
 
     void WriteToFile()
     {
-        string path = "Assets/textfiles/scores.txt";
-        StreamWriter writer = new StreamWriter(path, true);
-        writer.WriteLine("Test");
-        writer.Close();
+
     }
 }

@@ -9,10 +9,11 @@ public class Scores : MonoBehaviour
 {
     [SerializeField]
     public TMP_Text[] scores = new TMP_Text[5];
+    public string[] prevScores = new string[5];
 
-    void DisplayHighScore(int position, string name, float time)
+    void DisplayHighScore(int position, string text)
     {
-        scores[position].text = name + " " + time;
+        scores[position].text = text;
     }
 
     public void OnBackButton()
@@ -24,29 +25,55 @@ public class Scores : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //WriteToFile(10f);
         ReadFromFile();
     }
-    void WriteToFile()
+    void WriteToFile(float time)
     {
         string path = "Assets/textfiles/scores.txt";
-        StreamWriter writer = new StreamWriter(path, true);
-        writer.WriteLine("Test");
+        StreamReader reader = new StreamReader(path);
+        float newTime = time;
+        float savedTime = newTime;
+        float[] prevScores = new float[5];
+
+        // Get old scores
+        for (int i = 0; i < 5; i++)
+        {
+            prevScores[i] = float.Parse(reader.ReadLine());
+        }
+
+        reader.Close();
+
+        StreamWriter writer = new StreamWriter(path, false); // False to overwrite
+
+        // Check if new time is lower than previous times
+        for (int i = 0; i < 5; i++)
+        {
+            // Replace each higher time with lower
+            if (savedTime < prevScores[i])
+            {
+                // Take old time, put in new time
+                savedTime = prevScores[i];
+                prevScores[i] = newTime;
+            }
+            // Write the new score
+            writer.WriteLine(prevScores[i]);
+        }
+
         writer.Close();
     }
 
     void ReadFromFile()
     {
         string path = "Assets/textfiles/scores.txt";
-        StreamReader reader = new StreamReader(path);
+        StreamReader reader2 = new StreamReader(path);
 
         for (int i = 0; i < 5; i++)
         {
-            string scoreLine = reader.ReadLine();
-
-            DisplayHighScore(i, scoreLine, 10f);
+            DisplayHighScore(i, reader2.ReadLine());
         }
 
-        reader.Close();
+        reader2.Close();
     }
 
     // Update is called once per frame
