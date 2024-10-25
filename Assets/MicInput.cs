@@ -11,7 +11,7 @@ public class MicInput : MonoBehaviour
     public float voiceThreshold = 0.01f;
     public float speedMultiplier = 10f;
     public float yellRange = 10f;
-
+    public GameObject[] Hearts = new GameObject[3];
     private Rigidbody2D rb;
     private AudioSource audioSource;
     private string mic;
@@ -19,7 +19,7 @@ public class MicInput : MonoBehaviour
     private Animator screamAnim;
 
     public int playerLives = 3;
-
+    //private List<Image> = new List <Images>
     private List<GameObject> ghosts = new List<GameObject>();
 
     void Start()
@@ -98,6 +98,7 @@ public class MicInput : MonoBehaviour
         if (other.gameObject.CompareTag("Ghost"))
         {
             playerLives--;
+            Hearts[playerLives].SetActive(false);
             Debug.Log("Player hit a ghost! Lives remaining: " + playerLives);
 
             // If the player has no lives left, trigger game over
@@ -126,7 +127,7 @@ public class MicInput : MonoBehaviour
         }
 
         // Set the fade speed by adjusting alpha decrement and delay
-        float fadeStep = 0.1f; // How much alpha decreases per step (smaller = slower fade)
+        float fadeStep = 0.2f; // How much alpha decreases per step (smaller = slower fade)
         float fadeDelay = 0.03f; // Delay between each step (larger = slower fade)
 
         // Gradually reduce the alpha to fade out

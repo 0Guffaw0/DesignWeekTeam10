@@ -9,7 +9,7 @@ public class win : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WriteToFile(10f);
+
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class win : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    void WriteToFile(float time)
+    public void WriteToFile(float time)
     {
         string path = "Assets/textfiles/scores.txt";
         StreamReader reader = new StreamReader(path);

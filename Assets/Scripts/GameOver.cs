@@ -23,6 +23,11 @@ public class GameOver : MonoBehaviour
         //WriteToFile();
         SceneManager.LoadScene(1);
     }
+    public void OnMenuButton()
+    {
+        //WriteToFile();
+        SceneManager.LoadScene(0);
+    }
 
     void WriteToFile()
     {
